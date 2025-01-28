@@ -141,7 +141,8 @@ const Website = () => {
               <Image
                 src="/logow.svg"
                 alt="Call Won Logo"
-                className="w-15 h-8"
+                width={180}  // Use pixel values for width
+                height={32} // Use pixel values for height
               />
             </div>
 
@@ -167,12 +168,12 @@ const Website = () => {
               isVisible.hero ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
             }`}
           >
-            <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Empowering Growth</h1>
+            <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Intelligent Growth</h1>
             <p className="text-xl text-gray-600 mb-8">
-              Transform your business with AI-powered automation and personalization.
+            Grow your business with automated outbound campaigns that work. We specialize in personalized outreach at scale, helping you connect with more qualified leads while saving time and resources.
             </p>
             <button className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors">
-              Get Started
+              Let&#39;s Connect
             </button>
           </div>
           <div className="h-96">
@@ -217,10 +218,10 @@ const Website = () => {
                 Boost Productivity with Automation
               </h2>
               <p className="text-xl text-gray-300 mb-6">
-                Streamline processes to unlock your team&#39;s full potential.
+                Get your team focused on what matters
               </p>
               <p className="text-gray-300 mb-6">
-                Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
+                Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most.
               </p>
               <p className="text-gray-300">
                 Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
@@ -268,12 +269,12 @@ const Website = () => {
                 AI-Powered Personalization at Scale
               </h3>
               <p className="text-gray-600 mb-6">
-                Deliver impactful customer experiences with data-driven precision.
+                Deliver a better prospect experiences with data-driven precision.
               </p>
               <p className="text-gray-600 mb-8">
                 With our fine-tuned generative AI solutions, we enable businesses to achieve
-                high levels of personalization for prospects and ideal customers. We implement
-                AI with data safeguards, offering self-hosted models that keep your sensitive
+                high levels of personalization at scale. With safety in mind we approach
+                AI with data safeguards, offering self-hosted or seoerated models that keep your sensitive
                 data secure.
               </p>
             </div>
@@ -287,11 +288,10 @@ const Website = () => {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Driving Results Through Expertise
+              Expertise at every touch point
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We help you streamline processes, engage customers, and scale efficiently
-              with advanced tools and strategies.
+              Our D2C and B2B experience allows us to enhance almost every part of your Sales and Marketing funnel. 
             </p>
           </div>
 
@@ -319,12 +319,12 @@ const Website = () => {
             <ServiceCard
               icon={Code}
               title="Content Development"
-              description="Create impactful collateral that supports your sales and marketing efforts, driving conversions."
+              description="Create impactful and personalzied collateral that supports your sales and marketing efforts, driving conversions."
             />
             <ServiceCard
               icon={Shield}
               title="Secure AI Models"
-              description="Deploy self-hosted AI solutions with data safeguards to protect sensitive information."
+              description="Deploy self-hosted or restricred AI solutions with data safeguards to protect sensitive information."
             />
           </div>
         </div>
@@ -447,11 +447,12 @@ const Website = () => {
                 <Image
                   src="/logow.svg"
                   alt="Call Won Logo"
-                  className="w-15 h-8"
+                  width={180}  // Use pixel values for width
+                  height={32} // Use pixel values for height
                 />
               </div>
               <p className="text-gray-400 max-w-md mb-6">
-                Stay updated with the latest strategies and insights for boosting your sales and marketing efforts.
+                Keep tabs on us!.
               </p>
               <div className="flex space-x-4">
                 <a href="#" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
@@ -490,7 +491,7 @@ const Website = () => {
           </div>
 
           <div className="border-t border-white/10 mt-12 pt-8 text-center text-gray-500">
-            © 2024 Call Won. All rights reserved.
+            © 2025 Call Won. All rights reserved.
           </div>
         </div>
       </footer>
