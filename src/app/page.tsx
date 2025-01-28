@@ -32,6 +32,8 @@ const Website = () => {
   const [chartData, setChartData] = useState<ChartDataType[]>([])
   const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
   const [gearSpeed, setGearSpeed] = useState(8); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   useEffect(() => {
@@ -384,59 +386,113 @@ const Website = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
-            <div className="grid md:grid-cols-2">
-              <div className="p-12">
-                <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Work Together</h3>
-                <p className="text-gray-300 mb-8">
-                  Connect with us to transform your sales and marketing efforts.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <Mail className="w-6 h-6 text-[#D6DE23]" />
-                    <span className="text-gray-300">contact@callwon.com</span>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <Linkedin className="w-6 h-6 text-[#D6DE23]" />
-                    <span className="text-gray-300">CallWon</span>
-                  </div>
-                </div>
-              </div>
+      import { useState } from "react";
 
-              <div className="p-12 bg-white">
-                <form className="space-y-6">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Your Message"
-                      rows={4}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23] resize-none"
-                    ></textarea>
-                  </div>
-                  <button className="w-full bg-[#D6DE23] text-white px-6 py-3 rounded-lg hover:bg-[#4A4A4A] transition-colors">
-                    Send Message
-                  </button>
-                </form>
-              </div>
+{/* Contact Section */}
+<section id="contact" className="py-20 bg-white">
+  <div className="container mx-auto px-6">
+    <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
+      <div className="grid md:grid-cols-2">
+        <div className="p-12">
+          <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Work Together</h3>
+          <p className="text-gray-300 mb-8">
+            Connect with us to transform your sales and marketing efforts.
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-4">
+              <Mail className="w-6 h-6 text-[#D6DE23]" />
+              <span className="text-gray-300">contact@callwon.com</span>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Linkedin className="w-6 h-6 text-[#D6DE23]" />
+              <span className="text-gray-300">CallWon</span>
             </div>
           </div>
         </div>
-      </section>
+
+        <div className="p-12 bg-white">
+          <form
+            className="space-y-6"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = {
+                fields: [
+                  { name: "firstname", value: e.target[0].value },
+                  { name: "email", value: e.target[1].value },
+                  { name: "message", value: e.target[2].value },
+                ],
+              };
+
+              try {
+                const response = await fetch(
+                  `https://api.hsforms.com/submissions/v3/integration/submit/48487445/a43e69ad-d23b-4fbd-a89e-bf2a61ab952c`,
+                  {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                  }
+                );
+
+                if (response.ok) {
+                  setSuccessMessage("Thank you! Your message has been sent.");
+                  e.target.reset();
+                } else {
+                  setErrorMessage("Failed to send your message. Please try again.");
+                }
+              } catch (error) {
+                console.error("Error submitting the form:", error);
+                setErrorMessage("An error occurred. Please try again later.");
+              }
+            }}
+          >
+            <div>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
+                required
+              />
+            </div>
+            <div>
+              <textarea
+                placeholder="Your Message"
+                rows={4}
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23] resize-none"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-[#D6DE23] text-white px-6 py-3 rounded-lg hover:bg-[#4A4A4A] transition-colors"
+            >
+              Send Message
+            </button>
+          </form>
+          {/* Success Message */}
+          {successMessage && (
+            <p className="mt-4 text-green-500 font-semibold">{successMessage}</p>
+          )}
+          {/* Error Message */}
+          {errorMessage && (
+            <p className="mt-4 text-red-500 font-semibold">{errorMessage}</p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Footer */}
       <footer className="bg-[#1A1A1A] py-12">
