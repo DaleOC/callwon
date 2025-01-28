@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Mail, Linkedin, Shield, Cpu, MessageSquare, BarChart, 
-         ChartLine, Code, Network, Settings2,  Terminal, Circle, CogIcon } from 'lucide-react';
+import {
+  Menu, X, ArrowRight, Mail, Linkedin, Shield, Cpu, MessageSquare, BarChart,
+  ChartLine, Code, Network, Settings2, Terminal, Circle, CogIcon
+} from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import TerminalBox from '../components/Terminal';
 
@@ -15,24 +17,33 @@ const Website = () => {
 
   useEffect(() => {
     // Generate growth data for chart
-    const data = Array.from({ length: 12 }, (_, i) => ({
+    const data = Array.from({ length: 15 }, (_, i) => ({
       month: `Month ${i + 1}`,
-      growth: Math.floor(100 + (i * 15) + Math.random() * 20)
+      growth: Math.floor(10 + i * 20 + Math.random() * 20),
     }));
 
-    // Animate data loading
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < data.length) {
-        setChartData(prev => [...prev, data[index]]);
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 200);
+    setChartData(data);
 
-    return () => clearInterval(interval);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible((prev) => ({
+              ...prev,
+              hero: true,
+            }));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(document.getElementById('hero'));
+
+    return () => observer.disconnect();
   }, []);
+
 
 
   // Effect for gear animation
@@ -118,118 +129,129 @@ const Website = () => {
           </div>
         </div>
       </nav>
+     
       {/* Hero Section */}
       <section id="hero" className="pt-32 pb-20">
+      <div className="container mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div
+            className={`transform transition-all duration-1000 ${
+              isVisible.hero ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+            }`}
+          >
+            <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Empowering Growth</h1>
+            <p className="text-xl text-gray-600 mb-8">
+              Transform your business with AI-powered automation and personalization.
+            </p>
+            <button className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors">
+              Get Started
+            </button>
+          </div>
+          <div className="h-96">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis dataKey="month" />
+                <YAxis domain={[0, 'dataMax + 10']} />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="growth"
+                  stroke="#D6DE23"
+                  strokeWidth={5}
+                  dot={false}
+                  strokeDasharray={`${
+                    isVisible.hero
+                      ? chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
+                      : 0
+                  }, ${chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)}`}
+                  strokeDashoffset={
+                    isVisible.hero
+                      ? 0
+                      : -chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
+                  }
+                  animationDuration={2000}
+                  animationEasing="linear"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+    </section>
+
+      {/* Automation Section */}
+      <section id="automation" className="py-20 bg-[#2A2A2A]">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className={`transform transition-all duration-1000 ${isVisible.hero ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-              <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">
-                Empowering Growth
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                Transform your business with AI-powered automation and personalization.
+            <div className={`transform transition-all duration-1000 ${isVisible.automation ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+              <h2 className="text-4xl font-bold text-white mb-6">
+                Boost Productivity with Automation
+              </h2>
+              <p className="text-xl text-gray-300 mb-6">
+                Streamline processes to unlock your team's full potential.
               </p>
-              <button className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors">
-                Get Started
-              </button>
+              <p className="text-gray-300 mb-6">
+                Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
+              </p>
+              <p className="text-gray-300">
+                Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
+              </p>
             </div>
-
-            <div className="h-96">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="month" />
-                  <YAxis />
-                  <Tooltip />
-                  <Line
-                    type="monotone"
-                    dataKey="growth"
-                    stroke="#D6DE23"
-                    strokeWidth={3}
-                    dot={{ fill: '#D6DE23' }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
+            <div className="relative h-96">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className={`w-64 h-64 transition-all duration-1000 animate-spin-slow ${isVisible.automation ? 'opacity-100 scale-100' : 'opacity-0 scale-80'
+                    }`}
+                >
+                  <CogIcon className="w-full h-full text-[#D6DE23]" />
+                </div>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                <div className="w-96 h-96 rounded-full border-4 border-[#D6DE23] animate-pulse"></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Automation Section */}
-      <section id="automation" className="py-20 bg-[#2A2A2A]">
-  <div className="container mx-auto px-6">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-      <div className={`transform transition-all duration-1000 ${isVisible.automation ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-        <h2 className="text-4xl font-bold text-white mb-6">
-          Boost Productivity with Automation
-        </h2>
-        <p className="text-xl text-gray-300 mb-6">
-          Streamline processes to unlock your team's full potential.
-        </p>
-        <p className="text-gray-300 mb-6">
-          Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
-        </p>
-        <p className="text-gray-300">
-          Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
-        </p>
-      </div>
-      <div className="relative h-96">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div
-            className={`w-64 h-64 transition-all duration-1000 animate-spin-slow ${
-              isVisible.automation ? 'opacity-100 scale-100' : 'opacity-0 scale-80'
-            }`}
-          >
-            <CogIcon className="w-full h-full text-[#D6DE23]" />
+      {/* AI Section */}
+      <section id="ai" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className={`transform transition-all duration-1000 ${isVisible.ai ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+              }`}>
+              <div className="relative">
+                {/* Background decoration */}
+                <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#D6DE23]/10 rounded-full blur-3xl"></div>
+                <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-[#7623DE]/10 rounded-full blur-3xl"></div>
+
+                {/* Terminal window */}
+                <TerminalBox />
+              </div>
+            </div>
+
+            <div className={`transform transition-all duration-1000 ${isVisible.ai ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+              }`}>
+              <h2 className="text-4xl font-bold text-[#4A4A4A] mb-6">
+                Integrated AI
+              </h2>
+              <h3 className="text-2xl font-bold text-[#D6DE23] mb-4">
+                AI-Powered Personalization at Scale
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Deliver impactful customer experiences with data-driven precision.
+              </p>
+              <p className="text-gray-600 mb-8">
+                With our fine-tuned generative AI solutions, we enable businesses to achieve
+                high levels of personalization for prospects and ideal customers. We implement
+                AI with data safeguards, offering self-hosted models that keep your sensitive
+                data secure.
+              </p>
+            </div>
           </div>
         </div>
-        <div className="absolute inset-0 flex items-center justify-center opacity-30">
-          <div className="w-96 h-96 rounded-full border-4 border-[#D6DE23] animate-pulse"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* AI Section */}
-<section id="ai" className="py-20 bg-white">
-  <div className="container mx-auto px-6">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-      <div className={`transform transition-all duration-1000 ${
-        isVisible.ai ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-      }`}>
-        <div className="relative">
-          {/* Background decoration */}
-          <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#D6DE23]/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-[#7623DE]/10 rounded-full blur-3xl"></div>
-          
-          {/* Terminal window */}
-          <TerminalBox />
-        </div>
-      </div>
-
-      <div className={`transform transition-all duration-1000 ${
-        isVisible.ai ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
-      }`}>
-        <h2 className="text-4xl font-bold text-[#4A4A4A] mb-6">
-          Integrated AI
-        </h2>
-        <h3 className="text-2xl font-bold text-[#D6DE23] mb-4">
-          AI-Powered Personalization at Scale
-        </h3>
-        <p className="text-gray-600 mb-6">
-          Deliver impactful customer experiences with data-driven precision.
-        </p>
-        <p className="text-gray-600 mb-8">
-          With our fine-tuned generative AI solutions, we enable businesses to achieve 
-          high levels of personalization for prospects and ideal customers. We implement 
-          AI with data safeguards, offering self-hosted models that keep your sensitive 
-          data secure.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
       {/* Services Section */}
