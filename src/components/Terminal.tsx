@@ -18,7 +18,7 @@ export const TerminalBox = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [lines.length]);
 
   return (
     <div className="bg-[#1A1A1A] rounded-lg shadow-xl overflow-hidden">

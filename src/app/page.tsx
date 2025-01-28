@@ -1,29 +1,47 @@
 'use client'
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import {
-  Menu, X, ArrowRight, Mail, Linkedin, Shield, Cpu, MessageSquare, BarChart,
-  ChartLine, Code, Network, Settings2, Terminal, Circle, CogIcon
+ Mail, Linkedin, Shield, Cpu, MessageSquare, 
+  ChartLine, Code, Network, CogIcon, LucideIcon
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import TerminalBox from '../components/Terminal';
+import Image from 'next/image';
+
+type TeamMemberProps = {
+  name: string;
+  role: string;
+  image?: string; // Optional if it's commented out
+};
+
+
+type ServiceCardProps = {
+  icon: LucideIcon; // The icon type from Lucide
+  title: string;
+  description: string;
+};
+
+type ChartDataType = {
+  month: string;
+  growth: number;
+};
 
 
 const Website = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [chartData, setChartData] = useState([]);
-  const [isVisible, setIsVisible] = useState({});
-  const [gearSpeed, setGearSpeed] = useState(8);
+  const [chartData, setChartData] = useState<ChartDataType[]>([])
+  const [isVisible, setIsVisible] = useState<Record<string, boolean>>({});
+  const [gearSpeed, setGearSpeed] = useState(8); // eslint-disable-line @typescript-eslint/no-unused-vars
+
 
   useEffect(() => {
-    // Generate growth data for chart
     const data = Array.from({ length: 15 }, (_, i) => ({
       month: `Month ${i + 1}`,
       growth: Math.floor(10 + i * 20 + Math.random() * 20),
     }));
-
+  
     setChartData(data);
-
+  
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -38,11 +56,15 @@ const Website = () => {
       },
       { threshold: 0.1 }
     );
-
-    observer.observe(document.getElementById('hero'));
-
+  
+    const heroElement = document.getElementById('hero'); // Get the element
+    if (heroElement) {
+      observer.observe(heroElement); // Only observe if the element exists
+    }
+  
     return () => observer.disconnect();
   }, []);
+  
 
 
 
@@ -85,7 +107,7 @@ const Website = () => {
   }, []);
 
   // Components
-  const ServiceCard = ({ icon: Icon, title, description }) => (
+  const ServiceCard: FC<ServiceCardProps> = ({ icon: Icon, title, description }) => (
     <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
       <Icon className="w-12 h-12 text-[#D6DE23] mb-4" />
       <h3 className="text-xl font-bold mb-3 text-[#4A4A4A]">{title}</h3>
@@ -93,10 +115,16 @@ const Website = () => {
     </div>
   );
 
-  const TeamMember = ({ name, role, image }) => (
+  const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image }) => (
     <div className="text-center">
       <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
-        <img src={`/api/placeholder/128/128`} alt={name} className="w-full h-full object-cover" />
+        <Image
+          src={image || `/api/placeholder/128/128`}
+          alt={name}
+          className="w-full h-full object-cover"
+          width={128}
+          height={128}
+        />
       </div>
       <h4 className="text-lg font-bold text-[#4A4A4A]">{name}</h4>
       <p className="text-gray-600">{role}</p>
@@ -110,7 +138,7 @@ const Website = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
-              <img
+              <Image
                 src="/logow.svg"
                 alt="Call Won Logo"
                 className="w-15 h-8"
@@ -189,7 +217,7 @@ const Website = () => {
                 Boost Productivity with Automation
               </h2>
               <p className="text-xl text-gray-300 mb-6">
-                Streamline processes to unlock your team's full potential.
+                Streamline processes to unlock your team&#39;s full potential.
               </p>
               <p className="text-gray-300 mb-6">
                 Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
@@ -361,7 +389,7 @@ const Website = () => {
           <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
             <div className="grid md:grid-cols-2">
               <div className="p-12">
-                <h3 className="text-3xl font-bold text-white mb-6">Let's Work Together</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Work Together</h3>
                 <p className="text-gray-300 mb-8">
                   Connect with us to transform your sales and marketing efforts.
                 </p>
@@ -416,7 +444,7 @@ const Website = () => {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="col-span-2">
               <div className="flex items-center space-x-3 mb-6">
-                <img
+                <Image
                   src="/logow.svg"
                   alt="Call Won Logo"
                   className="w-15 h-8"
