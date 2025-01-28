@@ -133,6 +133,36 @@ const Website = () => {
     </div>
   );
 
+  const smoothScrollTo = (targetId) => {
+    const targetElement = document.getElementById(targetId);
+    if (!targetElement) return;
+
+    const targetPosition = targetElement.offsetTop; // Get the top position of the target element
+    const startPosition = window.scrollY; // Current scroll position
+    const distance = targetPosition - startPosition; // Distance to scroll
+    const duration = 1000; // Duration of the scroll (in milliseconds)
+    let startTime = null;
+
+    const easeInOutQuad = (t) => {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    };
+
+    const animation = (currentTime) => {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1); // Ensure it doesn’t exceed 1
+      const ease = easeInOutQuad(progress); // Apply easing
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (progress < 1) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -153,9 +183,14 @@ const Website = () => {
               <a href="#solutions" className="text-[#4A4A4A] hover:text-[#D6DE23]">Solutions</a>
               <a href="#team" className="text-[#4A4A4A] hover:text-[#D6DE23]">Team</a>
               <a href="#contact" className="text-[#4A4A4A] hover:text-[#D6DE23]">Contact</a>
-              <button className="bg-[#D6DE23] text-white px-6 py-2 rounded-lg hover:bg-[#4A4A4A] transition-colors">
+              <button
+                onClick={() => smoothScrollTo("contact")}
+                className="bg-[#D6DE23] text-white px-6 py-2 rounded-lg hover:bg-[#4A4A4A] transition-colors"
+              >
                 Get Started
               </button>
+
+
             </div>
           </div>
         </div>
@@ -173,7 +208,10 @@ const Website = () => {
               <p className="text-xl text-gray-600 mb-8">
                 Grow your business with automated outbound campaigns that work. We specialize in personalized outreach at scale, helping you connect with more qualified leads while saving time and resources.
               </p>
-              <button className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors">
+              <button
+                onClick={() => smoothScrollTo("contact")}
+                className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors"
+              >
                 Let&#39;s Connect
               </button>
             </div>
@@ -191,8 +229,8 @@ const Website = () => {
                     strokeWidth={5}
                     dot={false}
                     strokeDasharray={`${isVisible.hero
-                        ? chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
-                        : 0
+                      ? chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
+                      : 0
                       }, ${chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)}`}
                     strokeDashoffset={
                       isVisible.hero
