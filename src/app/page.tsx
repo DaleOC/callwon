@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight, Mail, Linkedin, Shield, Cpu, MessageSquare, BarChart, 
-         ChartLine, Code, Network, Settings2,  Terminal, Circle } from 'lucide-react';
+         ChartLine, Code, Network, Settings2,  Terminal, Circle, CogIcon } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import TerminalBox from '../components/Terminal';
 
@@ -157,47 +157,42 @@ const Website = () => {
 
       {/* Automation Section */}
       <section id="automation" className="py-20 bg-[#2A2A2A]">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className={`transform transition-all duration-1000 ${isVisible.automation ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-              <h2 className="text-4xl font-bold text-white mb-6">
-                Boost Productivity with Automation
-              </h2>
-              <p className="text-xl text-gray-300 mb-6">
-                Streamline processes to unlock your team's full potential.
-              </p>
-              <p className="text-gray-300 mb-6">
-                Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
-              </p>
-              <p className="text-gray-300">
-                Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
-              </p>
-            </div>
-
-            <div className="relative h-96">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div 
-                  className="w-64 h-64 transition-all duration-1000"
-                  style={{ 
-                    animation: `spin ${gearSpeed}s linear infinite`,
-                    opacity: isVisible.automation ? '1' : '0',
-                    transform: isVisible.automation ? 'scale(1)' : 'scale(0.8)'
-                  }}
-                >
-                  <Settings2 className="w-full h-full text-[#D6DE23]" />
-                </div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center opacity-30">
-                <div className="w-96 h-96 rounded-full border-4 border-[#D6DE23] animate-pulse"></div>
-              </div>
-            </div>
+  <div className="container mx-auto px-6">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className={`transform transition-all duration-1000 ${isVisible.automation ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+        <h2 className="text-4xl font-bold text-white mb-6">
+          Boost Productivity with Automation
+        </h2>
+        <p className="text-xl text-gray-300 mb-6">
+          Streamline processes to unlock your team's full potential.
+        </p>
+        <p className="text-gray-300 mb-6">
+          Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
+        </p>
+        <p className="text-gray-300">
+          Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
+        </p>
+      </div>
+      <div className="relative h-96">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div
+            className={`w-64 h-64 transition-all duration-1000 animate-spin-slow ${
+              isVisible.automation ? 'opacity-100 scale-100' : 'opacity-0 scale-80'
+            }`}
+          >
+            <CogIcon className="w-full h-full text-[#D6DE23]" />
           </div>
         </div>
-      </section>
+        <div className="absolute inset-0 flex items-center justify-center opacity-30">
+          <div className="w-96 h-96 rounded-full border-4 border-[#D6DE23] animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 {/* AI Section */}
-{/* AI Section */}
-<section id="ai" className="py-20 bg-[#2A2A2A]">
+<section id="ai" className="py-20 bg-white">
   <div className="container mx-auto px-6">
     <div className="grid md:grid-cols-2 gap-12 items-center">
       <div className={`transform transition-all duration-1000 ${
@@ -216,16 +211,16 @@ const Website = () => {
       <div className={`transform transition-all duration-1000 ${
         isVisible.ai ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
       }`}>
-        <h2 className="text-4xl font-bold text-white mb-6">
+        <h2 className="text-4xl font-bold text-[#4A4A4A] mb-6">
           Integrated AI
         </h2>
         <h3 className="text-2xl font-bold text-[#D6DE23] mb-4">
           AI-Powered Personalization at Scale
         </h3>
-        <p className="text-gray-300 mb-6">
+        <p className="text-gray-600 mb-6">
           Deliver impactful customer experiences with data-driven precision.
         </p>
-        <p className="text-gray-300 mb-8">
+        <p className="text-gray-600 mb-8">
           With our fine-tuned generative AI solutions, we enable businesses to achieve 
           high levels of personalization for prospects and ideal customers. We implement 
           AI with data safeguards, offering self-hosted models that keep your sensitive 
