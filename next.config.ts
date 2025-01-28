@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true, // Enable strict mode for better debugging
-
-  output: "standalone", // Use standalone output for deployment flexibility
+  reactStrictMode: true,
+  output: "standalone", // Enables deployment as a standalone app
 
   images: {
     remotePatterns: [
@@ -14,8 +13,8 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Optional: Add an assetPrefix if your site is hosted on a CDN or custom domain
-  assetPrefix: process.env.NODE_ENV === "production" ? "https://callwon.com" : undefined,
+  // No assetPrefix for root domain
+  assetPrefix: undefined,
 };
 
 export default nextConfig;
