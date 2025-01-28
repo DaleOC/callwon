@@ -133,34 +133,35 @@ const Website = () => {
     </div>
   );
 
-  const smoothScrollTo = (targetId) => {
+  const smoothScrollTo = (targetId: string): void => {
     const targetElement = document.getElementById(targetId);
     if (!targetElement) return;
-
+  
     const targetPosition = targetElement.offsetTop; // Get the top position of the target element
     const startPosition = window.scrollY; // Current scroll position
     const distance = targetPosition - startPosition; // Distance to scroll
     const duration = 1000; // Duration of the scroll (in milliseconds)
-    let startTime = null;
-
-    const easeInOutQuad = (t) => {
+    let startTime: number | null = null;
+  
+    const easeInOutQuad = (t: number): number => {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     };
-
-    const animation = (currentTime) => {
+  
+    const animation = (currentTime: number): void => {
       if (!startTime) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
       const progress = Math.min(timeElapsed / duration, 1); // Ensure it doesn’t exceed 1
       const ease = easeInOutQuad(progress); // Apply easing
       window.scrollTo(0, startPosition + distance * ease);
-
+  
       if (progress < 1) {
         requestAnimationFrame(animation);
       }
     };
-
+  
     requestAnimationFrame(animation);
   };
+  
 
 
   return (
