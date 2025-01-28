@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, FC } from 'react';
 import {
- Mail, Linkedin, Shield, Cpu, MessageSquare, 
+  Mail, Linkedin, Shield, Cpu, MessageSquare,
   ChartLine, Code, Network, CogIcon, LucideIcon
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
@@ -41,9 +41,9 @@ const Website = () => {
       month: `Month ${i + 1}`,
       growth: Math.floor(10 + i * 20 + Math.random() * 20),
     }));
-  
+
     setChartData(data);
-  
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -58,15 +58,15 @@ const Website = () => {
       },
       { threshold: 0.1 }
     );
-  
+
     const heroElement = document.getElementById('hero'); // Get the element
     if (heroElement) {
       observer.observe(heroElement); // Only observe if the element exists
     }
-  
+
     return () => observer.disconnect();
   }, []);
-  
+
 
 
 
@@ -160,56 +160,54 @@ const Website = () => {
           </div>
         </div>
       </nav>
-     
+
       {/* Hero Section */}
       <section id="hero" className="pt-32 pb-20">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div
-            className={`transform transition-all duration-1000 ${
-              isVisible.hero ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
-            }`}
-          >
-            <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Intelligent Growth</h1>
-            <p className="text-xl text-gray-600 mb-8">
-            Grow your business with automated outbound campaigns that work. We specialize in personalized outreach at scale, helping you connect with more qualified leads while saving time and resources.
-            </p>
-            <button className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors">
-              Let&#39;s Connect
-            </button>
-          </div>
-          <div className="h-96">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                <XAxis dataKey="month" />
-                <YAxis domain={[0, 'dataMax + 10']} />
-                <Tooltip />
-                <Line
-                  type="monotone"
-                  dataKey="growth"
-                  stroke="#D6DE23"
-                  strokeWidth={5}
-                  dot={false}
-                  strokeDasharray={`${
-                    isVisible.hero
-                      ? chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
-                      : 0
-                  }, ${chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)}`}
-                  strokeDashoffset={
-                    isVisible.hero
-                      ? 0
-                      : -chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
-                  }
-                  animationDuration={2000}
-                  animationEasing="linear"
-                />
-              </LineChart>
-            </ResponsiveContainer>
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div
+              className={`transform transition-all duration-1000 ${isVisible.hero ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+                }`}
+            >
+              <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Intelligent Growth</h1>
+              <p className="text-xl text-gray-600 mb-8">
+                Grow your business with automated outbound campaigns that work. We specialize in personalized outreach at scale, helping you connect with more qualified leads while saving time and resources.
+              </p>
+              <button className="bg-[#D6DE23] text-white px-8 py-4 rounded-lg hover:bg-[#4A4A4A] transition-colors">
+                Let&#39;s Connect
+              </button>
+            </div>
+            <div className="h-96">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                  <XAxis dataKey="month" />
+                  <YAxis domain={[0, 'dataMax + 10']} />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="growth"
+                    stroke="#D6DE23"
+                    strokeWidth={5}
+                    dot={false}
+                    strokeDasharray={`${isVisible.hero
+                        ? chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
+                        : 0
+                      }, ${chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)}`}
+                    strokeDashoffset={
+                      isVisible.hero
+                        ? 0
+                        : -chartData.reduce((total, _, index) => total + (index === 0 ? 0 : 50), 0)
+                    }
+                    animationDuration={2000}
+                    animationEasing="linear"
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
       {/* Automation Section */}
       <section id="automation" className="py-20 bg-[#2A2A2A]">
@@ -293,7 +291,7 @@ const Website = () => {
               Expertise at every touch point
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Our D2C and B2B experience allows us to enhance almost every part of your Sales and Marketing funnel. 
+              Our D2C and B2B experience allows us to enhance almost every part of your Sales and Marketing funnel.
             </p>
           </div>
 
@@ -385,109 +383,114 @@ const Website = () => {
         </div>
       </section>
 
-{/* Contact Section */}
-<section id="contact" className="py-20 bg-white">
-  <div className="container mx-auto px-6">
-    <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
-      <div className="grid md:grid-cols-2">
-        <div className="p-12">
-          <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Work Together</h3>
-          <p className="text-gray-300 mb-8">
-            Connect with us to transform your sales and marketing efforts.
-          </p>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-4">
-              <Mail className="w-6 h-6 text-[#D6DE23]" />
-              <span className="text-gray-300">contact@callwon.com</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Linkedin className="w-6 h-6 text-[#D6DE23]" />
-              <span className="text-gray-300">CallWon</span>
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
+            <div className="grid md:grid-cols-2">
+              <div className="p-12">
+                <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Work Together</h3>
+                <p className="text-gray-300 mb-8">
+                  Connect with us to transform your sales and marketing efforts.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <Mail className="w-6 h-6 text-[#D6DE23]" />
+                    <span className="text-gray-300">contact@callwon.com</span>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <Linkedin className="w-6 h-6 text-[#D6DE23]" />
+                    <span className="text-gray-300">CallWon</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-12 bg-white">
+                <form
+                  className="space-y-6"
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+
+                    // Explicitly cast e.target as HTMLFormElement
+                    const form = e.target as HTMLFormElement;
+
+                    const formData = {
+                      fields: [
+                        { name: "firstname", value: (form[0] as HTMLInputElement).value },
+                        { name: "email", value: (form[1] as HTMLInputElement).value },
+                        { name: "message", value: (form[2] as HTMLTextAreaElement).value },
+                      ],
+                    };
+
+                    try {
+                      const response = await fetch(
+                        `https://api.hsforms.com/submissions/v3/integration/submit/48487445/a43e69ad-d23b-4fbd-a89e-bf2a61ab952c`,
+                        {
+                          method: "POST",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify(formData),
+                        }
+                      );
+
+                      if (response.ok) {
+                        setSuccessMessage("Thank you! Your message has been sent.");
+                        form.reset();
+                      } else {
+                        setErrorMessage("Failed to send your message. Please try again.");
+                      }
+                    } catch (error) {
+                      console.error("Error submitting the form:", error);
+                      setErrorMessage("An error occurred. Please try again later.");
+                    }
+                  }}
+                >
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="Your Email"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <textarea
+                      placeholder="Your Message"
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23] resize-none"
+                      required
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-[#D6DE23] text-white px-6 py-3 rounded-lg hover:bg-[#4A4A4A] transition-colors"
+                  >
+                    Send Message
+                  </button>
+                </form>
+
+                {/* Success Message */}
+                {successMessage && (
+                  <p className="mt-4 text-green-500 font-semibold">{successMessage}</p>
+                )}
+                {/* Error Message */}
+                {errorMessage && (
+                  <p className="mt-4 text-red-500 font-semibold">{errorMessage}</p>
+                )}
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="p-12 bg-white">
-          <form
-            className="space-y-6"
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const formData = {
-                fields: [
-                  { name: "firstname", value: e.target[0].value },
-                  { name: "email", value: e.target[1].value },
-                  { name: "message", value: e.target[2].value },
-                ],
-              };
-
-              try {
-                const response = await fetch(
-                  `https://api.hsforms.com/submissions/v3/integration/submit/48487445/a43e69ad-d23b-4fbd-a89e-bf2a61ab952c`,
-                  {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
-                  }
-                );
-
-                if (response.ok) {
-                  setSuccessMessage("Thank you! Your message has been sent.");
-                  e.target.reset();
-                } else {
-                  setErrorMessage("Failed to send your message. Please try again.");
-                }
-              } catch (error) {
-                console.error("Error submitting the form:", error);
-                setErrorMessage("An error occurred. Please try again later.");
-              }
-            }}
-          >
-            <div>
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
-                required
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
-                required
-              />
-            </div>
-            <div>
-              <textarea
-                placeholder="Your Message"
-                rows={4}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23] resize-none"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-[#D6DE23] text-white px-6 py-3 rounded-lg hover:bg-[#4A4A4A] transition-colors"
-            >
-              Send Message
-            </button>
-          </form>
-          {/* Success Message */}
-          {successMessage && (
-            <p className="mt-4 text-green-500 font-semibold">{successMessage}</p>
-          )}
-          {/* Error Message */}
-          {errorMessage && (
-            <p className="mt-4 text-red-500 font-semibold">{errorMessage}</p>
-          )}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
 
 
