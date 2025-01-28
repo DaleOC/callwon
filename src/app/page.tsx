@@ -385,9 +385,6 @@ const Website = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      import { useState } from "react";
-
 {/* Contact Section */}
 <section id="contact" className="py-20 bg-white">
   <div className="container mx-auto px-6">
