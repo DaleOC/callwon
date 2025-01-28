@@ -1,13 +1,17 @@
 'use client'
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, Mail, Linkedin, Shield, Cpu, MessageSquare, BarChart, ChartLine, Code, Network } from 'lucide-react';
+import { Menu, X, ArrowRight, Mail, Linkedin, Shield, Cpu, MessageSquare, BarChart, 
+         ChartLine, Code, Network, Settings2,  Terminal, Circle } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import TerminalBox from '../components/Terminal';
+
 
 const Website = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [chartData, setChartData] = useState([]);
   const [isVisible, setIsVisible] = useState({});
+  const [gearSpeed, setGearSpeed] = useState(8);
 
   useEffect(() => {
     // Generate growth data for chart
@@ -29,6 +33,22 @@ const Website = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+
+  // Effect for gear animation
+  useEffect(() => {
+    if (isVisible.automation) {
+      const speedInterval = setInterval(() => {
+        setGearSpeed(prev => {
+          if (prev > 1) return prev - 0.5;
+          clearInterval(speedInterval);
+          return prev;
+        });
+      }, 1000);
+
+      return () => clearInterval(speedInterval);
+    }
+  }, [isVisible.automation]);
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -98,7 +118,6 @@ const Website = () => {
           </div>
         </div>
       </nav>
-
       {/* Hero Section */}
       <section id="hero" className="pt-32 pb-20">
         <div className="container mx-auto px-6">
@@ -137,82 +156,95 @@ const Website = () => {
       </section>
 
       {/* Automation Section */}
-      <section id="automation" className="py-20 bg-gray-50">
+      <section id="automation" className="py-20 bg-[#2A2A2A]">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className={`transform transition-all duration-1000 ${isVisible.automation ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-              <h2 className="text-4xl font-bold text-[#4A4A4A] mb-6">
+              <h2 className="text-4xl font-bold text-white mb-6">
                 Boost Productivity with Automation
               </h2>
-              <p className="text-xl text-gray-600 mb-6">
+              <p className="text-xl text-gray-300 mb-6">
                 Streamline processes to unlock your team's full potential.
               </p>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-300 mb-6">
                 Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most. Our solutions are tailored to meet your specific needs.
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-300">
                 Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
               </p>
             </div>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-64 h-64 animate-spin-slow">
-                  <Code className="w-full h-full text-[#D6DE23]" />
-                </div>
-              </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-48 h-48 animate-spin-reverse">
-                  <Network className="w-full h-full text-[#4A4A4A]" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* AI Section */}
-      <section id="ai" className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative h-96">
-              {/* Add AI visualization animation here */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="relative w-64 h-64">
-                  {/* Neural network animation */}
-                  <svg className="w-full h-full" viewBox="0 0 100 100">
-                    {/* Add animated SVG paths for neural network */}
-                  </svg>
+                <div 
+                  className="w-64 h-64 transition-all duration-1000"
+                  style={{ 
+                    animation: `spin ${gearSpeed}s linear infinite`,
+                    opacity: isVisible.automation ? '1' : '0',
+                    transform: isVisible.automation ? 'scale(1)' : 'scale(0.8)'
+                  }}
+                >
+                  <Settings2 className="w-full h-full text-[#D6DE23]" />
                 </div>
               </div>
-            </div>
-
-            <div className={`transform transition-all duration-1000 ${isVisible.ai ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-              <h2 className="text-4xl font-bold text-[#4A4A4A] mb-6">
-                Integrated AI
-              </h2>
-              <h3 className="text-2xl font-bold text-[#4A4A4A] mb-4">
-                AI-Powered Personalization at Scale
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Deliver impactful customer experiences with data-driven precision.
-              </p>
-              <p className="text-gray-600">
-                With our fine-tuned generative AI solutions, we enable businesses to achieve high levels of personalization for prospects and ideal customers. We implement AI with data safeguards, offering self-hosted models that keep your sensitive data secure.
-              </p>
+              <div className="absolute inset-0 flex items-center justify-center opacity-30">
+                <div className="w-96 h-96 rounded-full border-4 border-[#D6DE23] animate-pulse"></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+{/* AI Section */}
+{/* AI Section */}
+<section id="ai" className="py-20 bg-[#2A2A2A]">
+  <div className="container mx-auto px-6">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className={`transform transition-all duration-1000 ${
+        isVisible.ai ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
+      }`}>
+        <div className="relative">
+          {/* Background decoration */}
+          <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#D6DE23]/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-[#7623DE]/10 rounded-full blur-3xl"></div>
+          
+          {/* Terminal window */}
+          <TerminalBox />
+        </div>
+      </div>
+
+      <div className={`transform transition-all duration-1000 ${
+        isVisible.ai ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
+      }`}>
+        <h2 className="text-4xl font-bold text-white mb-6">
+          Integrated AI
+        </h2>
+        <h3 className="text-2xl font-bold text-[#D6DE23] mb-4">
+          AI-Powered Personalization at Scale
+        </h3>
+        <p className="text-gray-300 mb-6">
+          Deliver impactful customer experiences with data-driven precision.
+        </p>
+        <p className="text-gray-300 mb-8">
+          With our fine-tuned generative AI solutions, we enable businesses to achieve 
+          high levels of personalization for prospects and ideal customers. We implement 
+          AI with data safeguards, offering self-hosted models that keep your sensitive 
+          data secure.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-50">
+      <section id="services" className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#4A4A4A] mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               Driving Results Through Expertise
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               We help you streamline processes, engage customers, and scale efficiently
               with advanced tools and strategies.
             </p>
@@ -254,12 +286,12 @@ const Website = () => {
       </section>
 
       {/* Client Logo Ribbon */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
           <h3 className="text-center text-gray-600 mb-10">Trusted by Industry Leaders</h3>
           <div className="flex justify-around items-center flex-wrap gap-8">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="w-32 h-16 bg-gray-100 rounded flex items-center justify-center">
+              <div key={i} className="w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
                 <span className="text-gray-400">Logo {i + 1}</span>
               </div>
             ))}
@@ -268,7 +300,7 @@ const Website = () => {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="py-20 bg-gray-50">
+      <section id="team" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-[#4A4A4A] mb-4">Our Team</h2>
@@ -285,19 +317,21 @@ const Website = () => {
       </section>
 
       {/* Solution Partners */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#2A2A2A]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-[#4A4A4A] mb-4">Solution Partners</h2>
-            <p className="text-xl text-gray-600">Working together to deliver excellence</p>
+            <h2 className="text-4xl font-bold text-white mb-4">Solution Partners</h2>
+            <p className="text-xl text-gray-300">Working together to deliver excellence</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="p-8 bg-gray-50 rounded-lg text-center">
-                <div className="w-24 h-24 mx-auto mb-4 bg-gray-200 rounded-full"></div>
-                <h4 className="text-lg font-bold text-[#4A4A4A]">Partner {i + 1}</h4>
-                <p className="text-gray-600">Integration Partner</p>
+              <div key={i} className="p-8 bg-white/5 backdrop-blur-lg rounded-lg text-center border border-white/10 hover:border-white/20 transition-colors">
+                <div className="w-24 h-24 mx-auto mb-4 bg-[#D6DE23]/10 rounded-full flex items-center justify-center">
+                  <Shield className="w-12 h-12 text-[#D6DE23]" />
+                </div>
+                <h4 className="text-lg font-bold text-white">Partner {i + 1}</h4>
+                <p className="text-gray-400">Integration Partner</p>
               </div>
             ))}
           </div>
@@ -305,27 +339,28 @@ const Website = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-50">
+      <section id="contact" className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
             <div className="grid md:grid-cols-2">
-              <div className="bg-[#4A4A4A] p-12 text-white">
-                <h3 className="text-3xl font-bold mb-6">Let's Work Together</h3>
-                <p className="mb-8" />
-                Connect with us to transform your sales and marketing efforts.
+              <div className="p-12">
+                <h3 className="text-3xl font-bold text-white mb-6">Let's Work Together</h3>
+                <p className="text-gray-300 mb-8">
+                  Connect with us to transform your sales and marketing efforts.
+                </p>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
-                    <Mail className="w-6 h-6" />
-                    <span>contact@callwon.com</span>
+                    <Mail className="w-6 h-6 text-[#D6DE23]" />
+                    <span className="text-gray-300">contact@callwon.com</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <Linkedin className="w-6 h-6" />
-                    <span>CallWon</span>
+                    <Linkedin className="w-6 h-6 text-[#D6DE23]" />
+                    <span className="text-gray-300">CallWon</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-12">
+              <div className="p-12 bg-white">
                 <form className="space-y-6">
                   <div>
                     <input
@@ -359,47 +394,48 @@ const Website = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-12">
+      <footer className="bg-[#1A1A1A] py-12">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="col-span-2">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-[#D6DE23] rounded-lg flex items-center justify-center">
-                  <span className="text-xl font-bold text-white">C</span>
-                </div>
-                <span className="text-xl font-bold text-[#4A4A4A]">Call Won</span>
+                <img
+                  src="/logow.svg"
+                  alt="Call Won Logo"
+                  className="w-15 h-8"
+                />
               </div>
-              <p className="text-gray-600 max-w-md mb-6">
+              <p className="text-gray-400 max-w-md mb-6">
                 Stay updated with the latest strategies and insights for boosting your sales and marketing efforts.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-[#D6DE23] transition-colors">
+                <a href="#" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-[#D6DE23] transition-colors">
+                <a href="#" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
                   <Mail className="w-6 h-6" />
                 </a>
               </div>
             </div>
 
             <div>
-              <h4 className="text-lg font-bold text-[#4A4A4A] mb-4">Solutions</h4>
+              <h4 className="text-lg font-bold text-white mb-4">Solutions</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-600 hover:text-[#D6DE23]">Sales Automation</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-[#D6DE23]">Generative AI</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-[#D6DE23]">Data Enrichment</a></li>
-                <li><a href="#" className="text-gray-600 hover:text-[#D6DE23]">Campaign Management</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#D6DE23]">Sales Automation</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#D6DE23]">Generative AI</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#D6DE23]">Data Enrichment</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-[#D6DE23]">Campaign Management</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg font-bold text-[#4A4A4A] mb-4">Newsletter</h4>
-              <p className="text-gray-600 mb-4">Subscribe to get the latest updates</p>
+              <h4 className="text-lg font-bold text-white mb-4">Newsletter</h4>
+              <p className="text-gray-400 mb-4">Subscribe to get the latest updates</p>
               <div className="flex">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:border-[#D6DE23]"
+                  className="flex-1 px-4 py-2 rounded-l-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#D6DE23]"
                 />
                 <button className="bg-[#D6DE23] text-white px-6 py-2 rounded-r-lg hover:bg-[#4A4A4A] transition-colors">
                   Subscribe
@@ -408,7 +444,7 @@ const Website = () => {
             </div>
           </div>
 
-          <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
+          <div className="border-t border-white/10 mt-12 pt-8 text-center text-gray-500">
             © 2024 Call Won. All rights reserved.
           </div>
         </div>
