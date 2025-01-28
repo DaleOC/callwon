@@ -78,11 +78,12 @@ const Website = () => {
       <nav className="fixed w-full bg-white z-50 shadow-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-[#D6DE23] rounded-lg flex items-center justify-center">
-                <span className="text-xl font-bold text-white">C</span>
-              </div>
-              <span className="text-xl font-bold text-[#4A4A4A]">Call Won</span>
+            <div className="flex items-center">
+              <img
+                src="/logow.svg"
+                alt="Call Won Logo"
+                className="w-15 h-8"
+              />
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
@@ -310,18 +311,18 @@ const Website = () => {
             <div className="grid md:grid-cols-2">
               <div className="bg-[#4A4A4A] p-12 text-white">
                 <h3 className="text-3xl font-bold mb-6">Let's Work Together</h3>
-                <p className="mb-8"/>
-                  Connect with us to transform your sales and marketing efforts.
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-4">
-                      <Mail className="w-6 h-6" />
-                      <span>contact@callwon.com</span>
-                    </div>
-                    <div className="flex items-center space-x-4">
-                      <Linkedin className="w-6 h-6" />
-                      <span>CallWon</span>
-                    </div>
+                <p className="mb-8" />
+                Connect with us to transform your sales and marketing efforts.
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-4">
+                    <Mail className="w-6 h-6" />
+                    <span>contact@callwon.com</span>
                   </div>
+                  <div className="flex items-center space-x-4">
+                    <Linkedin className="w-6 h-6" />
+                    <span>CallWon</span>
+                  </div>
+                </div>
               </div>
 
               <div className="p-12">
