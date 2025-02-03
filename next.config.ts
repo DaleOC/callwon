@@ -1,27 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
-  output: "export", // Change from "standalone" to "export" for static site generation
-  
-  // Add basePath if you're not serving from root
-  basePath: "",
-  
-  // Add trailingSlash for consistency
-  trailingSlash: true,
-  
+  output: "export",
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "callwon.com", // Allow images from your domain
-      },
-    ],
-    unoptimized: true, // Add this for static exports
+    unoptimized: true,
+    remotePatterns: []
   },
-
-  // Remove assetPrefix if you're serving from the root domain
-  assetPrefix: process.env.NODE_ENV === 'production' ? 'https://callwon.com' : '',
+  swcMinify: true,
 };
 
 export default nextConfig;
