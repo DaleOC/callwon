@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: "standalone", // Enables deployment as a standalone app
+  output: "export", // Change from "standalone" to "export" for static site generation
   
   // Add basePath if you're not serving from root
   basePath: "",
