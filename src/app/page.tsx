@@ -117,6 +117,7 @@ const Website = () => {
     </div>
   );
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image }) => (
     <div className="text-center">
       <div className="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden">
