@@ -4,12 +4,13 @@ import { Circle } from 'lucide-react';
 export const TerminalBox = () => {
   const [currentLine, setCurrentLine] = useState(0);
   const lines = [
-    { text: '> Initializing AI model...', delay: 0 },
+    { text: '> Initializing AI...', delay: 0 },
     { text: '> Loading customer data...', delay: 1000 },
-    { text: '> Analyzing patterns...', delay: 2000 },
-    { text: '> Generating personalized responses...', delay: 3000 },
-    { text: '> Optimizing for engagement...', delay: 4000 },
-    { text: '> AI system ready.', delay: 5000 },
+    { text: '> Parsing data...', delay: 1000 },
+    { text: '> Analyzing...', delay: 2000 },
+    { text: '> Generating personalization...', delay: 3000 },
+    { text: '> Optimizing engagement...', delay: 4000 },
+    { text: '> Automation implemented.', delay: 5000 },
   ];
 
   useEffect(() => {

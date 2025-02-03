@@ -150,7 +150,7 @@ const Website = () => {
     const animation = (currentTime: number): void => {
       if (!startTime) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
-      const progress = Math.min(timeElapsed / duration, 1); // Ensure it doesn’t exceed 1
+      const progress = Math.min(timeElapsed / duration, 1); // Ensure it doesn't exceed 1
       const ease = easeInOutQuad(progress); // Apply easing
       window.scrollTo(0, startPosition + distance * ease);
   
@@ -369,7 +369,7 @@ const Website = () => {
         </div>
       </section>
 
-      {/* Client Logo Ribbon */}
+      {/* Client Logo Ribbon - Commented out for future use
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
           <h3 className="text-center text-gray-600 mb-10">Trusted by Industry Leaders</h3>
@@ -382,8 +382,9 @@ const Website = () => {
           </div>
         </div>
       </section>
+      */}
 
-      {/* Team Section */}
+      {/* Team Section - Commented out for future use
       <section id="team" className="py-20 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
@@ -399,8 +400,9 @@ const Website = () => {
           </div>
         </div>
       </section>
+      */}
 
-      {/* Solution Partners */}
+      {/* Solution Partners - Commented out for future use
       <section className="py-20 bg-[#2A2A2A]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
@@ -421,6 +423,7 @@ const Website = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* Contact Section */}
       <section id="contact" className="py-20 bg-white">
@@ -553,7 +556,7 @@ const Website = () => {
                 <a href="#" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
+                <a href="mailto:info@callwon.com" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
                   <Mail className="w-6 h-6" />
                 </a>
               </div>
