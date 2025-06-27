@@ -181,9 +181,9 @@ const Website = () => {
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-[#4A4A4A] hover:text-[#D6DE23]">Features</a>
-              <a href="#solutions" className="text-[#4A4A4A] hover:text-[#D6DE23]">Solutions</a>
-              <a href="#team" className="text-[#4A4A4A] hover:text-[#D6DE23]">Team</a>
+              {/* <a href="#features" className="text-[#4A4A4A] hover:text-[#D6DE23]">Features</a> */}
+              {/* <a href="#solutions" className="text-[#4A4A4A] hover:text-[#D6DE23]">Solutions</a> */}
+              {/* <a href="#team" className="text-[#4A4A4A] hover:text-[#D6DE23]">Team</a> */}
               <a href="#contact" className="text-[#4A4A4A] hover:text-[#D6DE23]">Contact</a>
               <button
                 onClick={() => smoothScrollTo("contact")}
