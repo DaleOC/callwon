@@ -182,9 +182,9 @@ const Website = () => {
 
             <div className="hidden md:flex items-center space-x-8">
               {/* <a href="#features" className="text-[#4A4A4A] hover:text-[#D6DE23]">Features</a> */}
-              {/* <a href="#solutions" className="text-[#4A4A4A] hover:text-[#D6DE23]">Solutions</a> */}
+               <a onClick={() => smoothScrollTo("expertise")} className="text-[#4A4A4A] hover:text-[#D6DE23] cursor-pointer">Expertise</a> 
               {/* <a href="#team" className="text-[#4A4A4A] hover:text-[#D6DE23]">Team</a> */}
-              <a href="#contact" className="text-[#4A4A4A] hover:text-[#D6DE23]">Contact</a>
+              <a onClick={() => smoothScrollTo("contact")} className="text-[#4A4A4A] hover:text-[#D6DE23] cursor-pointer">Contact</a>
               <button
                 onClick={() => smoothScrollTo("contact")}
                 className="bg-[#D6DE23] text-white px-6 py-2 rounded-lg hover:bg-[#4A4A4A] transition-colors"
@@ -324,7 +324,7 @@ const Website = () => {
 
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-[#1A1A1A]">
+      <section id="expertise" className="py-20 bg-[#1A1A1A]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
@@ -363,8 +363,8 @@ const Website = () => {
             />
             <ServiceCard
               icon={Shield}
-              title="Secure AI Models"
-              description="Deploy self-hosted or restricred AI solutions with data safeguards to protect sensitive information."
+              title="AI Implementation"
+              description="RAG, MCP, Generative AI etc. built into or with your existing system leveraging your data and business logic."
             />
           </div>
         </div>
@@ -592,7 +592,7 @@ const Website = () => {
                 Keep tabs on us!.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
+                <a href="https://www.linkedin.com/company/callwon/" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
                   <Linkedin className="w-6 h-6" />
                 </a>
                 <a href="mailto:info@callwon.com" className="text-gray-500 hover:text-[#D6DE23] transition-colors">
