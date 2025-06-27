@@ -206,9 +206,9 @@ const Website = () => {
               className={`transform transition-all duration-1000 ${isVisible.hero ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'
                 }`}
             >
-              <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Intelligent Growth</h1>
+              <h1 className="text-6xl font-bold text-[#4A4A4A] mb-6">Win more with less</h1>
               <p className="text-xl text-gray-600 mb-8">
-                Grow your business with automated outbound campaigns that work. We specialize in personalized outreach at scale, helping you connect with more qualified leads while saving time and resources.
+               We optimize, automate, and build the infrastructure that frees your team from the sales and marketing busy work allowing them to close deals and grow your business. 
               </p>
               <button
                 onClick={() => smoothScrollTo("contact")}
@@ -258,13 +258,13 @@ const Website = () => {
                 Boost Productivity with Automation
               </h2>
               <p className="text-xl text-gray-300 mb-6">
-                Get your team focused on what matters
+                Get your team focused on converting pipeline
               </p>
               <p className="text-gray-300 mb-6">
-                Call Won helps businesses scale by automating repetitive tasks, allowing your team to focus on what matters most.
+                Call Won helps businesses scale by automating repetitive tasks like prospect research, outbound email, allowing your team to focus on converting leads.
               </p>
               <p className="text-gray-300">
-                Whether building from scratch or augmenting an existing team, our expertise in automation and personalization ensures efficient and scalable growth.
+                Whether building from scratch or augmenting an existing team, our expertise in automation, AI implementation and personalization ensures efficient and scalable growth.
               </p>
             </div>
             <div className="relative h-96">
@@ -314,8 +314,8 @@ const Website = () => {
               <p className="text-gray-600 mb-8">
                 With our fine-tuned generative AI solutions, we enable businesses to achieve
                 high levels of personalization at scale. With safety in mind we approach
-                AI with data safeguards, offering self-hosted or seoerated models that keep your sensitive
-                data secure.
+                AI with data safeguards, offering self-hosted or seperated models that keep your sensitive
+                data secure. The AI ecosystem is daunting, let us help you identify the opportunities that proivde near-immediate value.
               </p>
             </div>
           </div>
@@ -349,7 +349,7 @@ const Website = () => {
             <ServiceCard
               icon={ChartLine}
               title="Data Enrichment"
-              description="Enhance your customer data with actionable insights to drive better targeting and decision-making."
+              description="Enhance your customer data with actionable insights to drive better targeting, decision-making & engagements."
             />
             <ServiceCard
               icon={Network}
@@ -359,7 +359,7 @@ const Website = () => {
             <ServiceCard
               icon={Code}
               title="Content Development"
-              description="Create impactful and personalzied collateral that supports your sales and marketing efforts, driving conversions."
+              description="Create impactful and personalzied content that supports your sales and marketing efforts, driving conversions."
             />
             <ServiceCard
               icon={Shield}
@@ -462,9 +462,9 @@ const Website = () => {
           <div className="max-w-4xl mx-auto bg-[#2A2A2A] rounded-lg shadow-xl overflow-hidden">
             <div className="grid md:grid-cols-2">
               <div className="p-12">
-                <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Work Together</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Let&#39;s Do More!</h3>
                 <p className="text-gray-300 mb-8">
-                  Connect with us to transform your sales and marketing efforts.
+                  Connect with us to amplify your sales and marketing.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
