@@ -137,32 +137,32 @@ const Website = () => {
   const smoothScrollTo = (targetId: string): void => {
     const targetElement = document.getElementById(targetId);
     if (!targetElement) return;
-  
+
     const targetPosition = targetElement.offsetTop; // Get the top position of the target element
     const startPosition = window.scrollY; // Current scroll position
     const distance = targetPosition - startPosition; // Distance to scroll
     const duration = 1000; // Duration of the scroll (in milliseconds)
     let startTime: number | null = null;
-  
+
     const easeInOutQuad = (t: number): number => {
       return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     };
-  
+
     const animation = (currentTime: number): void => {
       if (!startTime) startTime = currentTime;
       const timeElapsed = currentTime - startTime;
       const progress = Math.min(timeElapsed / duration, 1); // Ensure it doesn't exceed 1
       const ease = easeInOutQuad(progress); // Apply easing
       window.scrollTo(0, startPosition + distance * ease);
-  
+
       if (progress < 1) {
         requestAnimationFrame(animation);
       }
     };
-  
+
     requestAnimationFrame(animation);
   };
-  
+
 
 
   return (
@@ -370,20 +370,50 @@ const Website = () => {
         </div>
       </section>
 
-      {/* Client Logo Ribbon - Commented out for future use
+      {/* Client Logo Ribbon */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
-          <h3 className="text-center text-gray-600 mb-10">Trusted by Industry Leaders</h3>
-          <div className="flex justify-around items-center flex-wrap gap-8">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="w-32 h-16 bg-white rounded-lg shadow-md flex items-center justify-center">
-                <span className="text-gray-400">Logo {i + 1}</span>
-              </div>
-            ))}
+          <h3 className="text-center text-gray-600 mb-10">Where we've worked</h3>
+          <div className="flex justify-around items-center flex-wrap gap-12">
+            <div className="w-40 h-20 bg-gray-400 rounded-lg shadow-md flex items-center justify-center p-3 hover:shadow-lg transition-shadow">
+              <Image
+                src="/logos/monster-energy.svg"
+                alt="Monster Energy"
+                width={120}
+                height={60}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div className="w-40 h-20 bg-white rounded-lg shadow-md flex items-center justify-center p-3 hover:shadow-lg transition-shadow">
+              <Image
+                src="/logos/mercedes-benz.svg"
+                alt="Mercedes Benz"
+                width={120}
+                height={60}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div className="w-40 h-20 bg-gray-400 rounded-lg shadow-md flex items-center justify-center p-3 hover:shadow-lg transition-shadow">
+              <Image
+                src="/logos/autonomy.svg"
+                alt="Autonomy"
+                width={120}
+                height={60}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
+            <div className="w-40 h-20 bg-white rounded-lg shadow-md flex items-center justify-center p-3 hover:shadow-lg transition-shadow">
+              <Image
+                src="/logos/sbe.svg"
+                alt="SBE"
+                width={120}
+                height={60}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
           </div>
         </div>
       </section>
-      */}
 
       {/* Team Section - Commented out for future use
       <section id="team" className="py-20 bg-white">
@@ -439,11 +469,19 @@ const Website = () => {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-4">
                     <Mail className="w-6 h-6 text-[#D6DE23]" />
-                    <span className="text-gray-300">contact@callwon.com</span>
+                    <span className="text-gray-300">info@callwon.com</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <Linkedin className="w-6 h-6 text-[#D6DE23]" />
-                    <span className="text-gray-300">CallWon</span>
+                    <a
+                      href="https://www.linkedin.com/company/callwon"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-4"
+                    >
+                      <Linkedin className="w-6 h-6 text-[#D6DE23]" />
+                      <span className="text-gray-300">CallWon</span>
+                    </a>
+
                   </div>
                 </div>
               </div>
