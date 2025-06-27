@@ -373,7 +373,7 @@ const Website = () => {
       {/* Client Logo Ribbon */}
       <section className="py-16 bg-gray-100">
         <div className="container mx-auto px-6">
-          <h3 className="text-center text-gray-600 mb-10">Where we've worked</h3>
+          <h3 className="text-center text-gray-600 mb-10">Where we&apos;ve worked</h3>
           <div className="flex justify-around items-center flex-wrap gap-12">
             <div className="w-40 h-20 bg-gray-400 rounded-lg shadow-md flex items-center justify-center p-3 hover:shadow-lg transition-shadow">
               <Image
